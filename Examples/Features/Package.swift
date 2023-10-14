@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMinor(from: "1.2.0")),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", .upToNextMinor(from: "1.0.0")),
         .package(url: "https://github.com/pointfreeco/swift-overture", from: "0.5.0"),
-        // .package(path: "../")
+        .package(path: "../../")
     ],
     targets: [
         .target(
@@ -26,6 +26,7 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Overture", package: "swift-overture"),
+                .product(name: "PetstoreService", package: "petstore-service")
             ]
         ),
         .target(

@@ -9,14 +9,17 @@ let package = Package(
         .iOS(.v14),
         .macOS(.v11)
     ],
+    products: [
+        .library(name: "PetstoreService", targets: ["PetstoreService"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-openapi-generator", .upToNextMinor(from: "0.3.0")),
         .package(url: "https://github.com/apple/swift-openapi-runtime", .upToNextMinor(from: "0.3.0")),
         .package(url: "https://github.com/apple/swift-openapi-urlsession", .upToNextMinor(from: "0.3.0"))
     ],
     targets: [
-        .executableTarget(
-            name: "petstore-service",
+        .target(
+            name: "PetstoreService",
             dependencies: [
                 .product(
                     name: "OpenAPIRuntime",
