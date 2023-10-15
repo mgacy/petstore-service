@@ -13,7 +13,7 @@ public struct AppError: Identifiable, Equatable, Error {
     public let reason: String
     public let underlyingError: Error?
 
-    public init(id: UUID = .init(), reason: String, underlyingError: Error? = nil) {
+    public init(id: UUID, reason: String, underlyingError: Error? = nil) {
         self.id = id
         self.reason = reason
         self.underlyingError = underlyingError
