@@ -8,7 +8,9 @@
 
 import Common
 import ComposableArchitecture
+import Dependencies
 import Foundation
+import PetstoreService
 
 public struct FeatureReducer: Reducer {
     public struct State: Equatable {
@@ -19,6 +21,10 @@ public struct FeatureReducer: Reducer {
     public enum Action: Equatable {
         case onAppear
     }
+
+    @Dependency(\.petstoreService) var petstoreService
+
+    public init() {}
 
     public func reduce(into state: inout State, action: Action) -> ComposableArchitecture.Effect<Action> {
         switch action {

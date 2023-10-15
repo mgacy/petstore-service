@@ -58,6 +58,22 @@ public struct PetstoreService {
     /// - Remark: HTTP `DELETE /pet/{petId}`.
     /// - Remark: Generated from `#/paths//pet/{petId}/delete(deletePet)`.
     public var deletePet: @Sendable (Int64) async throws -> Operations.deletePet.Output
+
+    public init(
+        addPet: @escaping @Sendable (Pet) async throws -> Pet,
+        updatePet: @escaping @Sendable (Pet) async throws -> Pet,
+        findPetsByStatus: @escaping @Sendable (PetStatusInput) async throws -> [Pet],
+        findPetsByTags: @escaping @Sendable ([String]) async throws -> [Pet],
+        getPetById: @escaping @Sendable (Int64) async throws -> Pet,
+        deletePet: @escaping @Sendable (Int64) async throws -> Operations.deletePet.Output
+    ) {
+        self.addPet = addPet
+        self.updatePet = updatePet
+        self.findPetsByStatus = findPetsByStatus
+        self.findPetsByTags = findPetsByTags
+        self.getPetById = getPetById
+        self.deletePet = deletePet
+    }
 }
 
 public extension PetstoreService {
@@ -65,7 +81,7 @@ public extension PetstoreService {
         serverURL: URL,
         configuration: Configuration = .init(),
         apiKey: String
-    ) throws -> Self {
+    ) -> Self {
         let client = Client(
             serverURL: serverURL,
             transport: URLSessionTransport(),
