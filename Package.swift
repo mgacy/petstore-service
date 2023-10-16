@@ -10,7 +10,8 @@ let package = Package(
         .macOS(.v11)
     ],
     products: [
-        .library(name: "PetstoreService", targets: ["PetstoreService"]),
+        .library(name: "PetstoreModel", targets: ["PetstoreModel"]),
+        .library(name: "PetstoreService", targets: ["PetstoreService"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-openapi-generator", .upToNextMinor(from: "0.3.0")),
@@ -19,8 +20,28 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "PetstoreModel",
+            dependencies: [
+                .product(
+                    name: "OpenAPIRuntime",
+                    package: "swift-openapi-runtime"
+                ),
+                .product(
+                    name: "OpenAPIURLSession",
+                    package: "swift-openapi-urlsession"
+                ),
+            ],
+            plugins: [
+                .plugin(
+                    name: "OpenAPIGenerator",
+                    package: "swift-openapi-generator"
+                )
+            ]
+        ),
+        .target(
             name: "PetstoreService",
             dependencies: [
+                "PetstoreModel",
                 .product(
                     name: "OpenAPIRuntime",
                     package: "swift-openapi-runtime"

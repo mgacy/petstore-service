@@ -9,6 +9,7 @@
 import Foundation
 import OpenAPIRuntime
 import OpenAPIURLSession
+import PetstoreModel
 
 public struct PetstoreService {
     /// Add a new pet to the store
